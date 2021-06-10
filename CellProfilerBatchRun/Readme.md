@@ -25,3 +25,12 @@ In notepad++ open the file "batchRunCellProfiler.sh" and change the following pa
 
 Once you have set the paths, save the file and open the git bash terminal (windows search for 'Git Bash').
 A terminal window will open and, by default, the working directory will be in the root folder set for the user. 
+Type the following command to change the working directory ( for example to "c:\Users\Me\Documents\Project1")
+```
+cd "c:\Users\Me\Documents\Project1"
+```
+To run the bash script (located in c:\Users\Me\Documents\Project1), type the following command:
+```
+bash batchRunCellProfiler.sh
+```
+Now, the script will call the CellProfiler pipeline n times, with n equal to the number of batches.
