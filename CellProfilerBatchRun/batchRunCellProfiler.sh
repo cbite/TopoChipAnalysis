@@ -14,7 +14,6 @@ for i in $(seq 1 545 4356); do
 	if [ $BATCH_END -gt $TopoSize ]
 	then
 		BATCH_END=$TopoSize
-		echo "IF statement works"
 		echo $BATCH_END
 		$DIRECTORY_CELLPROFILER -p $DIRECOTRY_BATCHFILE -c -r -f $BATCH_START -l $BATCH_END -o ${DIRECTORY_OUTPUTDATA}'Batch'${i}
 	else
