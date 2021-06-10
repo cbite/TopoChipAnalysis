@@ -1,13 +1,17 @@
 <h1> Batch processing of images in CellProfiler </h1>
 
 
-There are a few steps to take before you can run your CellProfiler on a cluster. 
+There are a few steps to take before you can run your CellProfiler on a cluster. (for BioInterface Science group members: we use cluster to refer to the windows server desktop). 
 
 <h2> Step 1: build, test, and validate the CellProfiler pipeline </h2>
+It is advised to build the CellProfiler pipeline on your local machine and to use the cluster only for calculations. Once you have build the pipeline, it is important to test and validate if it is working like you intended. The cluster will not continue with a batch once an error occurred, so test and validate with at least 10 random images if everything works fine. 
+
+Once you have validated the pipeline, add the createBatchFiles module ( Edit --> Add Module --> File Processing ) to the end of your pipeline. This module is needed to resolve the pathnames to your files with respect to your local machine and the cluster computers. If you are processing large batches of images, you may also consider adding ExportToDatabase to your pipeline, after your measurement modules but before the CreateBatchFiles module. 
+
+Run the pipeline on your laptop to create a batch file. Click the Analyze images button and the analysis will begin processing locally. This will take some time but is needed because CellProfiler must  create the entire image set list. However, once the batch file is created, it captures all of the data needed to run the analysis. You are now ready to submit this batch file to the cluster to run each of the batches of images on different computers on the cluster.
 
 <h2> Step 2: batch processing of CellProfiler Pipeline </h2>
-Transfer the pipeline and data to the cluster (for BioInterface Science group members: we use cluster to refer to the windows server desktop). 
-Create your own project folder, with the following subfolders:
+Transfer the pipeline and data to the cluster and create your own project folder. This project folder should contain the following subfolders:
 
 1. InputData: to store your input data (i.e. cropped images).
 2. OutputData: this will be an empty folder which will be filled once CellProfiler is running.
