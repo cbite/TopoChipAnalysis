@@ -1,4 +1,4 @@
-<h1> Quality control images based on CellProfiler's MeasureImageQuality moduel </h1>
+<h1> Quality control images based on CellProfiler's MeasureImageQuality module </h1>
 
 The MeasureImageQuality module collects measurements indicating possible image aberrations, e.g., blur (poor focus), intensity, and saturation. These measurements can be used
 to exclude images during post-processing. 
