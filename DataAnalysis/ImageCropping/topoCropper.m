@@ -14,7 +14,7 @@ c0 = 'DAPI';
 c1 = 'FITC';
 c2 = 'TRITC';
 
-disp(append('Performing screen:', screen_name,'\n', 'Channel 0:', c0, '\n', 'Channel 1:', c1, '\n', 'Channel 0:', c2, '\n'));
+disp(append('Performing screen: ', screen_name,'\n Channel 0: ', c0, '\n Channel 1: ', c1, '\n Channel 0: ', c2, ' \n'));
 %%%%%%%%%%%USER PARAMETERS%%%%%%%%%%%%%
 
 % maindir should be where the script is
@@ -22,8 +22,8 @@ maindir = pwd;
 disp(append('Active in:', maindir));
 
 %navigate to image location maps
-imagemap = append(maindir, 'RawImages\'); %contains raw files
-destmap = append(maindir, 'CroppedImages\'); %contains destination files
+imagemap = append(maindir, '\RawImages\'); %contains raw files
+destmap = append(maindir, '\CroppedImages\'); %contains destination files
 
 %get directories of Chip replicate folders in the Raw Image map
 chipreps = dir(imagemap);
@@ -47,7 +47,7 @@ for chip = 1:(size(chips))
     %If file in directory is chip, proceed
     if test == 0
         %Create path into directory
-        disp(append('It is Chip ', chips{chip,1}, proceed));
+        disp(append('It is Chip ', chips{chip,1}, ' proceed.'));
         %iterate the chipnumber counter
         chipno = chipno + 1;
         %create folder for that same chip in the destination directory
@@ -96,7 +96,7 @@ for chip = 1:(size(chips))
         im_desto = im_dest + 10000;
         %perform histogram stretch operation to increase visibility
         im_desto = imadjust(im_desto,stretchlim(im_desto),[0.1 0.9]);
-        
+        disp('Image correction performed')
         %% Retrieve points from input image
         
         %take corner pieces
@@ -117,7 +117,7 @@ for chip = 1:(size(chips))
 
         %prepare the corner coordinates in a list
         qs = [q4 q1 q2 q3];
-
+        disp('Cornerpoints defined')
 
         %% Defining the gridspace and returning figure
 
@@ -164,6 +164,8 @@ for chip = 1:(size(chips))
             plot([x_grid(1,xi),x_grid(y_n+1,xi)],[y_grid(1,xi),y_grid(y_n+1,xi)], 'g-')
             hold on;
          end
+         
+        disp('Intrapolation made')
 
         %% Crop and save images 
         % loop through three chip channels
@@ -197,15 +199,15 @@ for chip = 1:(size(chips))
                     end
                     % bottom (y)
                     if int64(y_grid(o+1,i)) > int64(y_grid(o+1,i+1)) %c > d
-                        row_end = int64(y_grid(o+1,i)); % go with c
-                    else
                         row_end = int64(y_grid(o+1,i+1)); % go with d
+                    else
+                        row_end = int64(y_grid(o+1,i)); % go with c
                     end
                     % left (x)
                     if int64(x_grid(o,i)) > int64(x_grid(o+1,i))% a > c
-                        col_start = int64(x_grid(o+1,i)); % go with c
-                    else 
                         col_start = int64(x_grid(o,i)); % go with a
+                    else
+                        col_start = int64(x_grid(o+1,i)); % go with c
                     end
                     % right (x)
                     if int64(x_grid(o,i+1)) > int64(x_grid(o+1,i+1)) %b > d
