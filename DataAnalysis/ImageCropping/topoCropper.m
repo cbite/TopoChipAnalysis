@@ -96,7 +96,7 @@ for chip = 1:(size(chips))
         im_desto = im_dest + 10000;
         %perform histogram stretch operation to increase visibility
         im_desto = imadjust(im_desto,stretchlim(im_desto),[0.1 0.9]);
-        disp('Image correction performed')
+        disp('Image correction performed.')
         %% Retrieve points from input image
         
         %take corner pieces
@@ -172,16 +172,16 @@ for chip = 1:(size(chips))
         for index = 1:3
             if index == 1
                 channel = c2;
-                disp(append('Processing',channel,'now'));
+                disp(append('Processing ',channel,' now.'));
             end
             if index == 2
                 channel = c1;
-                disp(append('Processing',channel,'now'));
+                disp(append('Processing ',channel,' now.'));
                 im_dest = imread(append(replicatemap,'\',FITC));
             end
             if index == 3
                 channel = c0;
-                disp(append('Processing',channel,'now'));
+                disp(append('Processing ',channel,' now.'));
                 im_dest = imread(append(replicatemap,'\',DAPI));
             end
 
@@ -231,8 +231,8 @@ for chip = 1:(size(chips))
             end
         end
     else
-        disp('No chip found in folder')        
+        disp('No chip found in folder. (Ignore if on first pass)')        
     end
-    disp(['Cropped',chips{chip,1}])
+    disp(['Cropped ',chips{chip,1}])
 end
 disp('Done.')
