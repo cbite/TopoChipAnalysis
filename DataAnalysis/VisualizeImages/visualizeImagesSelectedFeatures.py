@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import seaborn as sns
-import seaborn as sns
 import os
 import cv2
 
@@ -26,7 +25,7 @@ def retrieve_name_images_selected_features(selected_features=None,data_images=No
     image_file_names=data_images.loc[:,['FeatureIdx','Metadata_Quadrant','Metadata_Duplicate',image_column]]
     return image_file_names
 
-def plot_the_images(image_data=None,features_to_plot=None,image_type=None,image_mode='png',folder_to_select=None,number_of_rows=2,number_of_columns=10):
+def plot_the_images(image_data=None,features_to_plot=None,image_type=None,image_mode='png',visualizing=None,folder_to_select=None,number_of_rows=2,number_of_columns=10,save_figure='No'):
     chip_folders=os.listdir(os.getcwd()+folder_to_select)
     for feat in features_to_plot:
         image_data_feature=image_data.loc[image_data['FeatureIdx']==int(feat),:]
@@ -71,5 +70,44 @@ def plot_the_images(image_data=None,features_to_plot=None,image_type=None,image_
             indexTop=indexTop+1
             indexBottom=indexBottom+1
 
+        # save the subplot per feature
+        if save_figure=='Yes':
+            file_name_to_save=os.getcwd()+"/04_DataAnalysis/"+visualizing+"_"+"Feature_"+feat+".png"
+            figure.savefig(file_name_to_save)
+            
 
-                                                
+def plot_feature_distribution(image_data=None,feature_of_interest=None,features_to_plot=None):
+    # boxplots cannot handle a long list of features
+    image_data_of_interest=image_data.loc[:,['FeatureIdx','Metadata_Chip',feature_of_interest]]
+    if features_to_plot.__len__() < 8:
+        features_to_plot=features_to_plot.append('2177')
+        image_data_to_plot=image_data_of_interest.loc[image_data_of_interest['FeatureIdx'].isin(features_to_plot),:]
+        plt.figure()
+        ax = sns.boxplot(x="FeatureIdx", y=feature_of_interest, data=image_data_to_plot,color='white')
+        ax = sns.stripplot(x="FeatureIdx", y=feature_of_interest, data=image_data_to_plot, hue='Metadata_Chip',size=4)
+        plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0,title='Chip Number')
+    else:
+        plotFeatures=True
+        x_init=0
+        x_end=8
+        while plotFeatures:
+            if x_end < features_to_plot.__len__():
+                features_subselected=features_to_plot[x_init:x_end]
+                features_subselected.append('2177')
+                image_data_to_plot=image_data_of_interest.loc[image_data_of_interest['FeatureIdx'].isin(features_subselected),:]
+                plt.figure()
+                ax = sns.boxplot(x="FeatureIdx", y=feature_of_interest, data=image_data_to_plot,color='white')
+                ax = sns.stripplot(x="FeatureIdx", y=feature_of_interest, data=image_data_to_plot, hue='Metadata_Chip',size=4)
+                plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0,title='Chip Number')
+            else:
+                x_end=features_to_plot.__len__()
+                features_subselected=features_to_plot[x_init:x_end]
+                features_subselected.append('2177')
+                image_data_to_plot=image_data_of_interest.loc[image_data_of_interest['FeatureIdx'].isin(features_subselected),:]
+                plt.figure()
+                ax = sns.boxplot(x="FeatureIdx", y=feature_of_interest, data=image_data_to_plot,color='white')
+                ax = sns.stripplot(x="FeatureIdx", y=feature_of_interest, data=image_data_to_plot, hue='Metadata_Chip',size=4)
+                plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0,title='Chip Number')
+                plotFeatures=False
+            x_init=x_end
+            x_end=x_init+8
