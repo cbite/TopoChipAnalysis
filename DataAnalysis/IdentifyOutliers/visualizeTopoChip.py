@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import PIL
+import cv2
 
 def showOnTopoChip(ScreenData, displayFeature, zoom=[[1,66],[1,66]]):
 
@@ -179,22 +180,12 @@ def showImages(ScreenData, featureOfInterest, stainingFile, valuesRange, mode="r
     for i, row in rows.iterrows():
         
         if(mode=="overlay"):
-            
-            folderName=folderNameOverlay            
-                      
+            folderName=folderNameOverlay                 
             fileName=row[stainingFile].replace(".tiff","actinOverlay.png")
-            
-            #fileName="Row1_Col1_c1_actinOverlay.png"
-            
             cmap="cividis"
-            
-        else:
-            
+        else:  
             folderName=folderNameRaw
             fileName=row[stainingFile]
-            
-            #fileName="Row1_Col1_c1.tiff"
-            
             cmap='gray'
         
         featureValue=row[featureOfInterest]
@@ -202,11 +193,11 @@ def showImages(ScreenData, featureOfInterest, stainingFile, valuesRange, mode="r
         chipRow=row["Metadata_Row"]
         chipCol=row["Metadata_Col"]
         imageFolder=folderName%chip
-        print(fileName)
-        print(imageFolder)
-        
-        s_image=PIL.Image.open(imageFolder+fileName)#.convert("L")
-        
+        if fileName.__contains__('.png'):
+            s_image=PIL.Image.open(imageFolder+fileName)#.convert("L")
+        if fileName.__contains__('.tif'):
+            image_read=cv2.imread(imageFolder+fileName)
+            s_image = cv2.cvtColor(image_read, cv2.COLOR_BGR2RGB)
            
         plt.subplot(25,4,i+1)
         plt.xticks([])
