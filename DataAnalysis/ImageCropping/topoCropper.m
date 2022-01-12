@@ -328,7 +328,7 @@ for chip = 1:(size(chips))
                     topocrop{o,i}=im_dest(row_start-2:row_end+2,col_start-2:col_end+2,:);
                     
                     %define filename
-                    file_name = append(destmap,chips{chip,1},'\',screen_name,'_Chip',num2str(chipno, '%02d'),'_Col',num2str(o, '%02d'),'_Row',num2str(i, '%02d'),'_Seq',num2str(count, '%04d'),'_',channel,'.tif'); % Create filename.
+                    file_name = append(destmap,chips{chip,1},'\',screen_name,'_Chip',num2str(chipno, '%02d'),'_Col',num2str(i, '%02d'),'_Row',num2str(o, '%02d'),'_Seq',num2str(count, '%04d'),'_',channel,'.tif'); % Create filename.
  
                     %savefile 
                     imwrite(topocrop{o,i}, file_name);
