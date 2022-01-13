@@ -13,3 +13,6 @@ seaborn (version 0.11.0)
 
 input data  
 CellProfiler image.csv file
+  
+ ### How to use the jupyter notebook  
+ For an extensive description of the usage, please see SOP 4.3
