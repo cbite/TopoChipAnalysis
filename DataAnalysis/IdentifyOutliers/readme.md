@@ -12,6 +12,6 @@ The SOP describes the following steps:
 <h5> Software </h5>
 Python 3.8.5 <br>
 <h5> Python libraries </h5>
-Pandas (version 1.1.3)
+Pandas (version 1.1.3) <br>
 Matplotlib (version 3.3.2)
 
