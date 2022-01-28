@@ -1,7 +1,9 @@
 <h1> Quality control images based on CellProfiler's MeasureImageQuality module </h1>
 
-The MeasureImageQuality module collects measurements indicating possible image aberrations, e.g., blur (poor focus), intensity, and saturation. These measurements can be used
-to exclude images during post-processing. 
+The MeasureImageQuality module collects measurements indicating possible image aberrations, e.g., blur (poor focus), intensity, and saturation. These measurements can be used to exclude images during post-processing. 
+
+<h3> Input data </h3>
+As input the function requires the output from the MeasureImageQuality module from CellProfiler. 
 
 <h2> Blur metrics </h2>
 <ul>
