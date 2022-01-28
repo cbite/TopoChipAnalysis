@@ -31,22 +31,24 @@ chipreps = dir(imagemap);
 chips = {chipreps.name}.';
 
 %initialize chipnumber counter
-chipno = input('Give the Chip number:');
+
+
 %Set topochip cell number on x
 x_n = 66;
 %Set topochip cell number on y
 y_n = 66;
 
-rotation_angle=input('Give the rotation angle')
 %% Loop through the chip replicate directories
 for chip = 1:(size(chips))
-    
+
     %Test if file in directory is actually a chip folder
     k = strfind(chips{chip,1}, 'Chip');
     test = isempty(k);
     
     %If file in directory is chip, proceed
     if test == 0
+        chipno = input('Give the Chip number:');
+        rotation_angle=input('Give the rotation angle')
         %Create path into directory
         disp(append('It is Chip ', chips{chip,1}, ' proceed.'));
         %iterate the chipnumber counter
@@ -344,5 +346,6 @@ for chip = 1:(size(chips))
         disp('No chip found in folder. (Ignore if on first pass)')        
     end
     disp(['Cropped ',chips{chip,1}])
+
 end
 disp('Done.')
