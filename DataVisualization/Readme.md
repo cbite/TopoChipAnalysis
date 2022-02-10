@@ -9,3 +9,7 @@ Data visualization is useful for data cleaning, exploring data structure, detect
   <li>Pandas</li>
   <li>Seaborn</li>
 </ul>
+
+
+<h3> Visualize Biological Readouts TopoChip </h3>
+This jupyter notebook can be used to create a scatter plot of two biological readouts. <br> 
