@@ -1,4 +1,4 @@
-<h3> Data visualization </h3>
+<h2> Data visualization </h2>
 
 This repository will contain the different jupyter notebooks which can be used to visualize your data in different manners. <br>
 Data visualization is useful for data cleaning, exploring data structure, detecting outliers, identifying trends/patterns, and presenting results. It is essential for exploratory data analysis and data mining to check data quality and to help analysts become familiar with the structure and features of the data before them.
@@ -10,16 +10,22 @@ Data visualization is useful for data cleaning, exploring data structure, detect
   <li>Seaborn</li>
 </ul>
 
-
-<h3> Interactive Scatterplot </h3>
+<br>
+<h2> Interactive Scatterplot </h2><br>
 This jupyter notebook contains a dynamic scatterplot for which the user can change the x or y parameter by using a dropdown menu. The position of each dot on the horizontal axis and vertical axis indicates values for an individual data point. Scatter plots are used to oserve relationships between variables. <br>
-
-<i> Input data format </i> <br>
+<u> Important: this notebook only works in jupyter Notebook and not in JupyterLab (both are available in Anaconda).</u>
+<br>
+<br>
+<h3> Input data format </h3> <br>
 This notebook takes a txt file as input, with at least three columns: id | column A | column B. Column A and B can be any parameter, as long as the values are numerical (type float64).
-
-<i> How to visualize your data </i> <br>
+<br>
+<h3> Set up the environment in Anaconda </h3>
+The folder <i>Python Environments </i> contains a environment.yml file to build the python environment needed to run this notebook. Download the yml file and import the environment to anaconda. <br>
+<br>
+<h3> How to visualize your data </h3> <br>
 Place the text file in the same folder as this jupyter notebook. Now, specify the filename in the following line of code (between parenthesis):<br>
 
 ```python
 input_data=pd.read_csv(filename,sep='\t')
 ```
+After you run every cell (with the play button) the scatterplot will appear.
