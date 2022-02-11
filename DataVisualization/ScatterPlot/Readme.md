@@ -2,7 +2,7 @@
 
 <h4> Software requirements </h4>
 <ul>
-  <li>Python (version</li>
+  <li>Python (version 3.8.8)</li>
     <li>Pandas (version 1.3.5)</li>
     <li>Seaborn (version 0.11.2)</li>
     <li>Ipywidgets (version 7.6.5)</li>
