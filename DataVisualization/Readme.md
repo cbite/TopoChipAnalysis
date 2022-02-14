@@ -12,7 +12,7 @@ Data visualization is useful for data cleaning, exploring data structure, detect
 
 <br>
 <h3> Set up the environment in Anaconda </h3>
-The folder <i>Python Environments </i> contains a environment.yml file to build the python environment needed to run this notebook. Download the yml file and import the environment to anaconda. <br>
+The folder <i>Environments </i> contains an environment (Python3_8_BIS.yml) file to build the python environment needed to run this notebook. Download the yml file and import the environment to anaconda. <br>
 <br>
 <h2> Interactive Scatterplot </h2><br>
 This jupyter notebook contains a dynamic scatterplot for which the user can change the x or y parameter by using a dropdown menu. The position of each dot on the horizontal axis and vertical axis indicates values for an individual data point. Scatter plots are used to oserve relationships between variables. <br>
